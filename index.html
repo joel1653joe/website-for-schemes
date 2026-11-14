@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-contrast="default" data-palette="none" data-font="standard" data-align="normal" data-cursor="normal" data-motion="normal" data-links="normal">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f3d2e" />
+  <title>ENVISION '26 | Tamil Nadu Differently Abled Scheme Access Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link" data-i18n="skipToMain">Skip to main content</a>
+  <div id="reading-ruler" class="reading-ruler" aria-hidden="true"></div>
+  <div id="sr-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- HEADER -->
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+      <button type="button" class="brand" data-nav="home" aria-label="ENVISION 26 Home">
+        <span class="brand-mark" aria-hidden="true">E</span>
+        <span class="brand-text">
+          <strong>ENVISION '26</strong>
+          <small data-i18n="brandSub">TN SCHEME ACCESS</small>
+        </span>
+      </button>
+
+      <nav class="main-nav" aria-label="Primary navigation">
+        <button type="button" class="nav-btn active" data-nav="home" data-i18n="navHome">Home</button>
+        <button type="button" class="nav-btn" data-nav="browse" data-i18n="navBrowse">Browse schemes</button>
+        <button type="button" class="nav-btn" data-nav="eligibility" data-i18n="navEligibility">Check eligibility</button>
+        <button type="button" class="nav-btn" data-nav="applications">
+          <span data-i18n="navApps">My applications</span>
+          <span id="app-count-badge" class="badge-pill">0</span>
+        </button>
+        <button type="button" class="nav-btn" data-nav="help" data-i18n="navHelp">Need help?</button>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" id="lang-toggle" class="tool-btn" aria-label="Switch language between English and Tamil">
+          <span aria-hidden="true">🌐</span>
+          <span id="lang-label">தமிழ்</span>
+        </button>
+        <button type="button" id="theme-quick-toggle" class="tool-btn icon-only" aria-label="Toggle dark and light theme" title="Toggle Dark/Light Mode">
+          <span id="theme-icon" aria-hidden="true">☾</span>
+        </button>
+        <button type="button" id="access-toggle" class="tool-btn access-btn" aria-expanded="false" aria-controls="accessibility-panel">
+          <span aria-hidden="true">♿</span>
+          <span data-i18n="accessibilityBtn">Accessibility</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ACCESSIBILITY DRAWER -->
+  <aside id="accessibility-panel" class="access-panel" aria-label="Accessibility settings" hidden>
+    <div class="access-panel-inner">
+      <div class="access-header">
+        <div>
+          <h2 data-i18n="accessTitle">Accessibility &amp; Reading Preferences</h2>
+          <p data-i18n="accessDesc">Saved automatically on this device. Press Alt+A anytime to open or close.</p>
+        </div>
+        <div class="access-header-actions">
+          <button type="button" id="reset-access-btn" class="btn btn-outline btn-sm" data-i18n="resetDefault">Reset to default</button>
+          <button type="button" id="close-access-btn" class="btn btn-ghost btn-sm" aria-label="Close accessibility panel">✕</button>
+        </div>
+      </div>
+
+      <div class="access-grid">
+        <!-- Text Size -->
+        <div class="access-group">
+          <label for="text-scale-slider" class="group-label">
+            <span data-i18n="textSizeLabel">Text size</span>: <strong id="text-scale-val">100%</strong>
+          </label>
+          <input type="range" id="text-scale-slider" min="100" max="200" step="10" value="100" />
+          <div class="btn-group">
+            <button type="button" class="chip-btn active" data-scale="100" data-i18n="sizeStandard">Standard</button>
+            <button type="button" class="chip-btn" data-scale="130" data-i18n="sizeLarge">Large</button>
+            <button type="button" class="chip-btn" data-scale="160" data-i18n="sizeExtra">Extra large</button>
+          </div>
+        </div>
+
+        <!-- Contrast Modes -->
+        <div class="access-group">
+          <span class="group-label" data-i18n="contrastLabel">Contrast &amp; Theme</span>
+          <div class="btn-group wrap">
+            <button type="button" class="chip-btn active" data-contrast-opt="default" data-i18n="contrastDefault">Default</button>
+            <button type="button" class="chip-btn" data-contrast-opt="light" data-i18n="contrastLight">Light</button>
+            <button type="button" class="chip-btn" data-contrast-opt="dark" data-i18n="contrastDark">Dark</button>
+            <button type="button" class="chip-btn" data-contrast-opt="aaa" data-i18n="contrastAAA">High Contrast (AAA)</button>
+          </div>
+        </div>
+
+        <!-- Color-Blind Palettes -->
+        <div class="access-group">
+          <span class="group-label" data-i18n="paletteLabel">Colour-blind friendly palette</span>
+          <div class="btn-group wrap">
+            <button type="button" class="chip-btn active" data-palette-opt="none" data-i18n="paletteNone">Standard</button>
+            <button type="button" class="chip-btn" data-palette-opt="protanopia">Protanopia</button>
+            <button type="button" class="chip-btn" data-palette-opt="deuteranopia">Deuteranopia</button>
+            <button type="button" class="chip-btn" data-palette-opt="tritanopia">Tritanopia</button>
+          </div>
+        </div>
+
+        <!-- Typography & Spacing -->
+        <div class="access-group">
+          <span class="group-label" data-i18n="typographyLabel">Readable fonts &amp; alignment</span>
+          <div class="btn-group wrap">
+            <button type="button" class="chip-btn active" data-font-opt="standard" data-i18n="fontStandard">Standard Font</button>
+            <button type="button" class="chip-btn" data-font-opt="dyslexic" data-i18n="fontDyslexic">Atkinson / Dyslexia-Friendly</button>
+            <button type="button" id="toggle-left-align" class="chip-btn" aria-pressed="false" data-i18n="leftAlign">Force Left-Align</button>
+          </div>
+          <div class="sliders-mini">
+            <label>
+              <span data-i18n="lineSpacing">Line spacing</span>: <span id="line-space-val">1.6</span>
+              <input type="range" id="line-space-slider" min="1.4" max="2.4" step="0.2" value="1.6" />
+            </label>
+            <label>
+              <span data-i18n="letterSpacing">Letter spacing</span>: <span id="letter-space-val">0px</span>
+              <input type="range" id="letter-space-slider" min="0" max="4" step="0.5" value="0" />
+            </label>
+            <label>
+              <span data-i18n="wordSpacing">Word spacing</span>: <span id="word-space-val">0px</span>
+              <input type="range" id="word-space-slider" min="0" max="10" step="1" value="0" />
+            </label>
+          </div>
+        </div>
+
+        <!-- Reading Aids & Motion -->
+        <div class="access-group">
+          <span class="group-label" data-i18n="aidsLabel">Reading aids &amp; Motion</span>
+          <div class="btn-group wrap">
+            <button type="button" id="toggle-ruler" class="chip-btn" aria-pressed="false" data-i18n="readingRuler">Reading Ruler</button>
+            <button type="button" id="toggle-links" class="chip-btn" aria-pressed="false" data-i18n="highlightLinks">Highlight Links</button>
+            <button type="button" id="toggle-cursor" class="chip-btn" aria-pressed="false" data-i18n="largeCursor">Large Cursor</button>
+            <button type="button" id="toggle-motion" class="chip-btn" aria-pressed="false" data-i18n="reduceMotion">Reduce Motion</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- DEMO DISCLAIMER BANNER -->
+  <div class="disclaimer-bar" role="region" aria-label="Prototype disclaimer">
+    <div class="container">
+      <span aria-hidden="true">ℹ️</span>
+      <span data-i18n="demoDisclaimer">Prototype Notice: Scheme details are compiled for demonstration. Always confirm final eligibility, documents, and deadlines with the Tamil Nadu Department for the Welfare of Differently Abled Persons.</span>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content" tabindex="-1">
+    <!-- VIEW 1: HOME -->
+    <section id="view-home" class="view active" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow">
+              <span class="dot" aria-hidden="true"></span>
+              <span data-i18n="heroEyebrow">TAMIL NADU DIFFERENTLY ABLED WELFARE</span>
+            </div>
+            <h1 id="hero-heading">
+              <span data-i18n="heroTitle1">Your benefits.</span><br />
+              <em data-i18n="heroTitle2">Within reach.</em>
+            </h1>
+            <p class="lead" data-i18n="heroSubtitle">
+              Discover Tamil Nadu government schemes for differently abled persons. Check which ones you qualify for in plain language, listen aloud, and generate a pre-filled draft application form.
+            </p>
+            <div class="hero-cta-row">
+              <button type="button" class="btn btn-primary btn-lg" data-nav="eligibility">
+                <span data-i18n="ctaCheck">Check my eligibility</span> <span aria-hidden="true">→</span>
+              </button>
+              <button type="button" class="btn btn-secondary btn-lg" data-nav="browse">
+                <span data-i18n="ctaBrowse">Browse all 25 schemes</span>
+              </button>
+            </div>
+            <ul class="trust-list">
+              <li><span aria-hidden="true">✓</span> <span data-i18n="trust1">English &amp; தமிழ் support with Read Aloud</span></li>
+              <li><span aria-hidden="true">✓</span> <span data-i18n="trust2">Easy-read summaries &amp; plain eligibility reasons</span></li>
+              <li><span aria-hidden="true">✓</span> <span data-i18n="trust3">Instant draft application PDF &amp; reference tracker</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-visual" aria-label="Portal highlights">
+            <div class="stat-card primary-card">
+              <span class="stat-tag" data-i18n="cardTag1">SCHEME DIRECTORY</span>
+              <strong class="stat-num">25</strong>
+              <span class="stat-label" data-i18n="cardLabel1">Tamil Nadu Welfare Schemes</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-tag" data-i18n="cardTag2">ACCESSIBILITY</span>
+              <strong class="stat-num">AAA</strong>
+              <span class="stat-label" data-i18n="cardLabel2">WCAG 2.2 Contrast, Voice &amp; Dyslexia Controls</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-tag" data-i18n="cardTag3">LAST-MILE READY</span>
+              <strong class="stat-num">PDF</strong>
+              <span class="stat-label" data-i18n="cardLabel3">Pre-filled Drafts for CSC / e-Sevai</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <div class="section-block">
+          <div class="section-head">
+            <span class="eyebrow" data-i18n="howEyebrow">A CLEARER JOURNEY</span>
+            <h2 data-i18n="howTitle">How ENVISION '26 works</h2>
+          </div>
+          <div class="steps-grid">
+            <article class="step-card">
+              <div class="step-num">01</div>
+              <h3 data-i18n="step1Title">Share basic details</h3>
+              <p data-i18n="step1Desc">Enter age, disability type, percentage, education, and income—no Aadhaar or sensitive numbers required.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-num">02</div>
+              <h3 data-i18n="step2Title">Plain-word matching</h3>
+              <p data-i18n="step2Desc">See exactly why you qualify for each scheme—or which single criterion is missing.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-num">03</div>
+              <h3 data-i18n="step3Title">Easy-read &amp; audio</h3>
+              <p data-i18n="step3Desc">Read short summaries, compare up to 3 schemes side by side, or listen aloud in English or Tamil.</p>
+            </article>
+            <article class="step-card">
+              <div class="step-num">04</div>
+              <h3 data-i18n="step4Title">Draft &amp; track</h3>
+              <p data-i18n="step4Desc">Download a print-ready draft application form and save a reference code for your records.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: BROWSE SCHEMES -->
+    <section id="view-browse" class="view" aria-labelledby="browse-heading" hidden>
+      <div class="container">
+        <div class="page-header">
+          <div>
+            <span class="eyebrow" data-i18n="browseEyebrow">SCHEME DIRECTORY</span>
+            <h1 id="browse-heading" data-i18n="browseTitle">Explore Tamil Nadu Welfare Schemes</h1>
+          </div>
+          <div class="page-header-actions">
+            <button type="button" id="bookmark-filter-btn" class="btn btn-outline" aria-pressed="false">
+              <span aria-hidden="true">★</span> <span data-i18n="savedOnly">Saved Schemes</span> (<span id="saved-count">0</span>)
+            </button>
+          </div>
+        </div>
+
+        <!-- Search & Filter Bar -->
+        <div class="filter-panel" role="search" aria-label="Filter schemes">
+          <div class="search-box-wrap">
+            <label for="scheme-search" class="sr-only" data-i18n="searchLabel">Search schemes</label>
+            <input type="search" id="scheme-search" placeholder="Search by keyword, benefit, bus pass, smartphone, scholarship..." />
+            <button type="button" id="voice-search-btn" class="btn btn-ghost voice-btn" aria-label="Voice search" title="Search by voice">
+              🎤
+            </button>
+          </div>
+
+          <div class="filters-row">
+            <div class="filter-field">
+              <label for="filter-category" data-i18n="filterCat">Category</label>
+              <select id="filter-category">
+                <option value="all">All Categories</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label for="filter-disability" data-i18n="filterDis">Disability Type</label>
+              <select id="filter-disability">
+                <option value="all">All Disabilities</option>
+                <option value="visual">Visual Impairment</option>
+                <option value="hearing">Hearing / Speech Impairment</option>
+                <option value="locomotor">Locomotor / Physical</option>
+                <option value="intellectual">Intellectual / Autism / CP / MD</option>
+                <option value="any">Any Differently Abled (40%+)</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label for="filter-age" data-i18n="filterAge">Age Group</label>
+              <select id="filter-age">
+                <option value="all">All Ages</option>
+                <option value="child">Children &amp; Students (0–17)</option>
+                <option value="youth">Youth &amp; Adults (18–40)</option>
+                <option value="adult">Working Adults (18–60)</option>
+                <option value="senior">All / Senior Citizens (60+)</option>
+              </select>
+            </div>
+            <div class="filter-field">
+              <label for="sort-schemes" data-i18n="sortBy">Sort by</label>
+              <select id="sort-schemes">
+                <option value="featured">Recommended Order</option>
+                <option value="az">Name (A – Z)</option>
+                <option value="category">Category</option>
+              </select>
+            </div>
+          </div>
+          <div class="filter-status-bar">
+            <span id="results-counter" role="status">Showing 25 schemes</span>
+            <button type="button" id="clear-filters-btn" class="btn-link" data-i18n="clearFilters">Clear all filters</button>
+          </div>
+        </div>
+
+        <!-- Compare Drawer Bar -->
+        <div id="compare-bar" class="compare-bar" hidden>
+          <div>
+            <strong data-i18n="compareSelected">Compare Schemes:</strong>
+            <span id="compare-list-names">None selected</span>
+          </div>
+          <div class="compare-bar-btns">
+            <button type="button" id="open-compare-modal" class="btn btn-primary btn-sm" data-i18n="compareNow">Compare Side by Side</button>
+            <button type="button" id="clear-compare-btn" class="btn btn-outline btn-sm" data-i18n="clearCompare">Clear</button>
+          </div>
+        </div>
+
+        <!-- Scheme Cards Grid -->
+        <div id="schemes-grid" class="schemes-grid"></div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: ELIGIBILITY CHECKER -->
+    <section id="view-eligibility" class="view" aria-labelledby="elig-heading" hidden>
+      <div class="container narrow">
+        <span class="eyebrow" data-i18n="eligEyebrow">STEP 01 / YOUR PROFILE</span>
+        <h1 id="elig-heading" data-i18n="eligTitle">Check Your Scheme Eligibility</h1>
+        <p class="muted" data-i18n="eligSubtitle">
+          Fill in the basic details below. We explain every match—and every near-match—in plain words. Do not enter sensitive personal IDs.
+        </p>
+
+        <form id="eligibility-form" class="card form-card" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="inp-name">
+                <span data-i18n="lblName">Applicant Full Name</span> <span class="req">*</span>
+              </label>
+              <div class="input-with-mic">
+                <input type="text" id="inp-name" required placeholder="e.g., Kavitha / Arjun" />
+                <button type="button" class="mic-field-btn" data-target="inp-name" aria-label="Dictate applicant name">🎤</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inp-age">
+                <span data-i18n="lblAge">Age (in years)</span> <span class="req">*</span>
+              </label>
+              <input type="number" id="inp-age" min="0" max="120" required placeholder="e.g., 22" />
+            </div>
+
+            <div class="form-group">
+              <label for="inp-disability">
+                <span data-i18n="lblDisability">Disability Category</span> <span class="req">*</span>
+              </label>
+              <select id="inp-disability" required>
+                <option value="visual">Visual Impairment (Blind / Low Vision)</option>
+                <option value="hearing">Hearing / Speech Impairment</option>
+                <option value="locomotor">Locomotor / Physical Disability</option>
+                <option value="intellectual">Intellectual Disability / Autism / CP / Multiple</option>
+                <option value="other">Other Benchmark Disability</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="inp-percent">
+                <span data-i18n="lblPercent">Disability Percentage (%)</span>
+              </label>
+              <input type="number" id="inp-percent" min="0" max="100" value="40" />
+            </div>
+
+            <div class="form-group">
+              <label for="inp-income">
+                <span data-i18n="lblIncome">Annual Family Income (₹)</span>
+              </label>
+              <input type="number" id="inp-income" min="0" step="1000" value="72000" />
+            </div>
+
+            <div class="form-group">
+              <label for="inp-community">
+                <span data-i18n="lblCommunity">Community Category</span>
+              </label>
+              <select id="inp-community">
+                <option value="general">General / OC</option>
+                <option value="bc">Backward Classes (BC)</option>
+                <option value="mbc">Most Backward Classes (MBC) / DNC</option>
+                <option value="scst">SC / ST</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="inp-education">
+                <span data-i18n="lblEducation">Current Education / Qualification</span>
+              </label>
+              <select id="inp-education">
+                <option value="below8">Below 8th Standard / Early Childhood</option>
+                <option value="passed8">8th Standard Passed</option>
+                <option value="school11_12_eng">Studying 11th or 12th (English Medium)</option>
+                <option value="school_other">Studying School (1st to 12th)</option>
+                <option value="ug_pg">Higher Education (Undergraduate / PG / Diploma)</option>
+                <option value="graduate">Graduate / Completed Degree</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="inp-occupation">
+                <span data-i18n="lblOccupation">Current Status</span>
+              </label>
+              <select id="inp-occupation">
+                <option value="student">Student</option>
+                <option value="unemployed">Unemployed Youth / Job Seeker</option>
+                <option value="self_employed">Self-Employed / Entrepreneur</option>
+                <option value="employed">Employed</option>
+                <option value="homemaker">Homemaker / Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="inp-gender">
+                <span data-i18n="lblGender">Gender</span>
+              </label>
+              <select id="inp-gender">
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+                <option value="other">Transgender / Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="inp-district">
+                <span data-i18n="lblDistrict">Tamil Nadu District</span>
+              </label>
+              <input type="text" id="inp-district" value="Chennai" placeholder="e.g., Madurai, Coimbatore, Chennai" />
+            </div>
+          </div>
+
+          <div class="checkbox-stack">
+            <label class="check-label">
+              <input type="checkbox" id="chk-tn-resident" checked />
+              <span data-i18n="chkResident">Applicant is a permanent resident of Tamil Nadu</span>
+            </label>
+            <label class="check-label">
+              <input type="checkbox" id="chk-first-grad" />
+              <span data-i18n="chkFirstGrad">No graduate in the applicant's family (First-generation graduate family)</span>
+            </label>
+          </div>
+
+          <div id="form-error-msg" class="alert alert-error" role="alert" hidden></div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-lg">
+              <span data-i18n="btnRunMatch">See Matching Schemes</span> <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- VIEW 4: ELIGIBILITY RESULTS -->
+    <section id="view-results" class="view" aria-labelledby="res-heading" hidden>
+      <div class="container">
+        <div class="page-header">
+          <div>
+            <span class="eyebrow" data-i18n="resEyebrow">STEP 02 / YOUR RESULTS</span>
+            <h1 id="res-heading" data-i18n="resTitle">Your Eligibility Breakdown</h1>
+            <p id="res-profile-summary" class="muted"></p>
+          </div>
+          <div class="page-header-actions">
+            <button type="button" id="read-results-btn" class="btn btn-secondary">
+              <span aria-hidden="true">🔊</span> <span data-i18n="readResultsAloud">Read results aloud</span>
+            </button>
+            <button type="button" class="btn btn-outline" data-nav="eligibility">
+              ← <span data-i18n="editProfile">Edit profile</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="results-tabs" role="tablist">
+          <button type="button" class="tab-btn active" role="tab" aria-selected="true" data-res-tab="matched">
+            <span aria-hidden="true">✅</span> <span data-i18n="tabMatched">Likely Eligible</span> (<span id="count-matched">0</span>)
+          </button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" data-res-tab="unmatched">
+            <span aria-hidden="true">ℹ️</span> <span data-i18n="tabUnmatched">Other Schemes &amp; Missing Criteria</span> (<span id="count-unmatched">0</span>)
+          </button>
+        </div>
+
+        <div id="matched-results-list" class="results-list"></div>
+        <div id="unmatched-results-list" class="results-list" hidden></div>
+      </div>
+    </section>
+
+    <!-- VIEW 5: SCHEME DETAIL & DRAFT PDF -->
+    <section id="view-detail" class="view" aria-labelledby="detail-title" hidden>
+      <div class="container narrow">
+        <div class="detail-top-nav">
+          <button type="button" id="back-from-detail" class="btn btn-ghost">← <span data-i18n="backBtn">Back</span></button>
+          <div class="detail-util-btns">
+            <button type="button" id="detail-bookmark-btn" class="btn btn-outline btn-sm">☆ Save</button>
+            <button type="button" id="detail-print-btn" class="btn btn-outline btn-sm">🖨️ <span data-i18n="printScheme">Print this scheme</span></button>
+            <button type="button" id="detail-share-btn" class="btn btn-outline btn-sm">🔗 <span data-i18n="shareScheme">Share</span></button>
+          </div>
+        </div>
+
+        <article id="scheme-detail-card" class="card detail-card"></article>
+      </div>
+    </section>
+
+    <!-- VIEW 6: MY APPLICATIONS -->
+    <section id="view-applications" class="view" aria-labelledby="apps-heading" hidden>
+      <div class="container">
+        <div class="page-header">
+          <div>
+            <span class="eyebrow" data-i18n="appsEyebrow">LOCAL PROTOTYPE RECORDS</span>
+            <h1 id="apps-heading" data-i18n="appsTitle">My Draft Applications</h1>
+            <p class="muted" data-i18n="appsSubtitle">Saved locally in your browser so you can reference them at a CSC / e-Sevai centre or District Differently Abled Welfare Office.</p>
+          </div>
+        </div>
+        <div id="applications-container"></div>
+      </div>
+    </section>
+
+    <!-- VIEW 7: NEED HELP -->
+    <section id="view-help" class="view" aria-labelledby="help-heading" hidden>
+      <div class="container narrow">
+        <span class="eyebrow" data-i18n="helpEyebrow">OFFICIAL GUIDANCE &amp; SUPPORT</span>
+        <h1 id="help-heading" data-i18n="helpTitle">Need Help Applying?</h1>
+        <div class="card help-card">
+          <h2 data-i18n="deptName">Department for the Welfare of Differently Abled Persons, Government of Tamil Nadu</h2>
+          <p data-i18n="deptDesc">
+            For official scheme verification, UDID card registration, assistive device camps, and application submission, contact your local District Differently Abled Welfare Office (DDAWO) or visit a nearby TN e-Sevai / Common Service Centre (CSC).
+          </p>
+          <ul class="help-list">
+            <li><strong data-i18n="helpOfficeLabel">State Commissionerate:</strong> <span data-i18n="helpOfficeVal">Commissionerate for Welfare of the Differently Abled, No. 5, Kamarajar Salai, Lady Willingdon College Campus, Chennai – 600 005.</span></li>
+            <li><strong data-i18n="helpDistrictLabel">District Level:</strong> <span data-i18n="helpDistrictVal">District Differently Abled Welfare Officer (DDAWO) located at every District Collectorate in Tamil Nadu.</span></li>
+            <li><strong data-i18n="helpPortalsLabel">Official Portals:</strong> <span>scd.tn.gov.in &bull; swavlambancard.gov.in (UDID) &bull; tnega.tn.gov.in (e-Sevai)</span></li>
+          </ul>
+          <div class="alert alert-info">
+            <span aria-hidden="true">ℹ️</span>
+            <span data-i18n="helpNoPhone">Note: Please verify current office timings and official helpline numbers directly via the Tamil Nadu Government directory before travelling.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FLOATING SPEECH SYNTHESIS BAR -->
+  <div id="tts-player" class="tts-bar" role="region" aria-label="Read aloud audio controls" hidden>
+    <div class="tts-info">
+      <span aria-hidden="true">🔊</span>
+      <strong id="tts-status-text">Reading aloud...</strong>
+    </div>
+    <div class="tts-controls">
+      <button type="button" id="tts-pause-btn" class="btn btn-sm btn-outline">⏸ Pause</button>
+      <button type="button" id="tts-resume-btn" class="btn btn-sm btn-outline" hidden>▶ Resume</button>
+      <button type="button" id="tts-stop-btn" class="btn btn-sm btn-primary">⏹ Stop</button>
+      <label class="tts-speed">
+        <span>Speed</span>
+        <select id="tts-rate">
+          <option value="0.8">0.8x</option>
+          <option value="1" selected>1.0x</option>
+          <option value="1.25">1.25x</option>
+          <option value="1.5">1.5x</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <!-- COMPARISON MODAL -->
+  <div id="compare-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="compare-modal-title" hidden>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 id="compare-modal-title" data-i18n="compareModalTitle">Side-by-Side Scheme Comparison</h2>
+        <button type="button" id="close-compare-modal" class="btn btn-ghost" aria-label="Close comparison">✕</button>
+      </div>
+      <div id="compare-table-wrap" class="table-responsive"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div>
+        <strong>ENVISION '26</strong> — <span data-i18n="footerTag">Accessible Scheme Discovery Prototype for Tamil Nadu</span>
+      </div>
+      <div data-i18n="footerNote">Confirm all scheme details with the relevant Tamil Nadu Government department.</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
